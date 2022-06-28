@@ -9,6 +9,7 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
     // ...add more providers here
+    
   ],
   callbacks: {
     async session({ session, token }) {
@@ -20,5 +21,6 @@ export default NextAuth({
       session.user.uid = token.sub;
       return session;
     },
+
   },
 });
