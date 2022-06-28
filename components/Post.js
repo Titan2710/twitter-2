@@ -24,19 +24,26 @@ import {
   import { useRouter } from "next/router";
   import { useEffect, useState } from "react";
   import Moment from "react-moment";
-//   import { useRecoilState } from "recoil";
-//   import { modalState, postIdState } from "../atoms/modalAtom";
+  import { useRecoilState } from "recoil";
+  import { modalState, postIdState } from "../atoms/modalAtom";
   import { db } from "../firebase";
   
 
 function Post({id, post, postPage}) {
     const { data: session } = useSession();
-    // const [isOpen, setIsOpen] = useRecoilState(modalState);
-    // const [postId, setPostId] = useRecoilState(postIdState);
+    const [isOpen, setIsOpen] = useRecoilState(modalState);
+    const [postId, setPostId] = useRecoilState(postIdState);
     const [comments, setComments] = useState([]);
     const [likes, setLikes] = useState([]);
     const [liked, setLiked] = useState(false);
     const router = useRouter();
+
+
+    // const likePost = async () => {
+    //     if(liked) {
+    //         await
+    //     }
+    // }
     
   return (
     <div className='flex p-4 border-b border-gray-700 cursor-pointer'>
@@ -92,7 +99,7 @@ function Post({id, post, postPage}) {
                 </p>
             )}
             <img src={post?.image} alt="" className="object-cover mr-2 rounded-2xl max-h" />
-            <div className={`text-[#6e76d] flex justify-between w-10/12 ${postPage && "mx-auto"}`}>
+            <div className={`text-[#6e767d] flex justify-between w-10/12 ${postPage && "mx-auto"}`}>
             <div
             className="flex items-center space-x-1 group"
             onClick={(e) => {
@@ -132,7 +139,7 @@ function Post({id, post, postPage}) {
             </div>
           )}
 
-          {/* <div
+          <div
             className="flex items-center space-x-1 group"
             onClick={(e) => {
               e.stopPropagation();
@@ -155,13 +162,13 @@ function Post({id, post, postPage}) {
                 {likes.length}
               </span>
             )}
-          </div> */}
+          </div>
 
           <div className="icon group">
-            <ShareIcon className="h-5 group-hover:text-[#1d9bf0]" />
+            <ShareIcon className=" h-5 group-hover:text-[#1d9bf0]" />
           </div>
           <div className="icon group">
-            <ChartBarIcon className="h-5 group-hover:text-[#1d9bf0]" />
+            <ChartBarIcon className=" h-5 group-hover:text-[#1d9bf0]" />
           </div>
             </div>
         </div>
