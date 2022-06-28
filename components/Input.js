@@ -1,9 +1,19 @@
-import { XIcon } from '@heroicons/react/outline';
-import React, { useState } from 'react'
+import { CalendarIcon, ChartBarIcon, EmojiHappyIcon, PhotographIcon, XIcon } from '@heroicons/react/outline';
+import React, { useRef, useState, useEffect } from 'react'
+
 
 function Input() {
   const [input, setInput] = useState("");
-  const [selectedFile, setSelectedFile] = useState(null)
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [showEmojis, setShowEmojis] = useState(false);
+  const filePickerRef = useRef(null);
+
+    const addImageToPost = () => {
+        
+    }
+
+
+
   return (
     <div className={`flex p-3 space-x-3 border-b border-gray-700 `}>
         <img    
@@ -12,7 +22,7 @@ function Input() {
             className='rounded-full cursor-pointer h-11 w-11'
         />
         <div className="w-full divide-y divide-gray-800">
-            <div className={``}>
+            <div className={`${selectedFile && "pb-7"} ${input && "space-y-2.5"}`}>
                 <textarea
                   className="bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500 tracking-wide w-full min-h-[50px]"
                   rows="2"
@@ -32,7 +42,42 @@ function Input() {
                         />
                     </div>
                 )}
+            </div>
+            <div className="flex items-center justify-between pt-2.5">
+                <div className="flex items-center">
+                    <div 
+                        className="icon"
+                        onClick={() => filePickerRef.current.click()}
+                    >
+                        <PhotographIcon className='h-[22px] text-[#1d9bf0]' />
+                        <input 
+                            type="file" 
+                            hidden
+                            className='' 
+                            onChange={addImageToPost} 
+                            ref={filePickerRef}
+                        />
+                    </div>
+                    
+                    <div className="rotate-90 icon">
+                        <ChartBarIcon className="text-[#1d9bf0] h-[22px]" />
+                    </div>
+                    <div className="icon">
+                            <EmojiHappyIcon className="text-[#1d9bf0] h-[22px]" />     
+                    </div>
+                    <div className="icon">
+                        <CalendarIcon className="text-[#1d9bf0] h-[22px]" />
+                    </div>
+                    
 
+                </div>
+                <button
+                    className="bg-[#1d9bf0] text-white rounded-full px-4 py-1.5 font-bold shadow-md hover:bg-[#1a8cd8] disabled:hover:bg-[#1d9bf0] disabled:opacity-50 disabled:cursor-default"
+                    disabled={!input && !selectedFile}
+                    // onClick={sendPost}
+                >
+                Tweet
+                </button>
             </div>
         </div>
     </div>
