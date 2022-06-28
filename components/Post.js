@@ -38,12 +38,43 @@ function Post({id, post, postPage}) {
     const [liked, setLiked] = useState(false);
     const router = useRouter();
 
-
-    // const likePost = async () => {
-    //     if(liked) {
-    //         await
-    //     }
-    // }
+    useEffect(
+        () =>
+          onSnapshot(
+            query(
+              collection(db, "posts", id, "comments"),
+              orderBy("timestamp", "desc")
+            ),
+            (snapshot) => setComments(snapshot.docs)
+          ),
+        [db, id]
+      );
+    
+      useEffect(
+        () =>
+          onSnapshot(collection(db, "posts", id, "likes"), (snapshot) =>
+            setLikes(snapshot.docs)
+          ),
+        [db, id]
+      );
+    
+      useEffect(
+        () =>
+          setLiked(
+            likes.findIndex((like) => like.id === session?.user?.uid) !== -1
+          ),
+        [likes]
+      );
+    
+      const likePost = async () => {
+        if (liked) {
+          await deleteDoc(doc(db, "posts", id, "likes", session.user.uid));
+        } else {
+          await setDoc(doc(db, "posts", id, "likes", session.user.uid), {
+            username: session.user.name,
+          });
+        }
+      };
     
   return (
     <div className='flex p-4 border-b border-gray-700 cursor-pointer'>
