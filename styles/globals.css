@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-black;  
+    @apply overflow-scroll bg-black scrollbar-hide;  
   }
 }
 

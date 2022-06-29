@@ -77,64 +77,69 @@ function Post({id, post, postPage}) {
       };
     
   return (
-    <div 
-      className='flex p-4 border-b border-gray-800 cursor-pointer'
+    <div
+      className="flex p-3 border-b border-gray-700 cursor-pointer"
       onClick={() => router.push(`/${id}`)}
     >
-        {!postPage && (
-            <img 
-                referrerPolicy="no-referrer"
-                src={post?.userImg} 
-                alt="" 
-                className='mr-4 rounded-full h-11 w-11'
+      {!postPage && (
+        <img
+          src={post?.userImg}
+          alt=""
+          className="mr-4 rounded-full h-11 w-11"
+        />
+      )}
+      <div className="flex flex-col w-full space-y-2">
+        <div className={`flex ${!postPage && "justify-between"}`}>
+          {postPage && (
+            <img
+              src={post?.userImg}
+              alt="Profile Pic"
+              className="mr-4 rounded-full h-11 w-11"
             />
-        )}
-        <div className="flex flex-col w-full space-y-2">
-            <div className={`flex ${!postPage && "justify-between"}`}>
-                {postPage && (
-                    <img 
-                        referrerPolicy="no-referrer"
-                        src={post?.userImg} 
-                        alt="profile-pic" 
-                        className='mr-4 rounded-full h-11 w-11'
-                    />
-                )}
-                <div className="text-[#6e767d]">
-                    <div className="inline-block group">
-                        <h4 
-                         className={`font-bold text-[15px]
-                          sm:text-base text-[#d9d9d9] group-hover:underline
-                          ${!postPage && "inline-block"}`}
-                        >
-                            {post?.username}
-                        </h4>
-                        <span className={`text-sm sm:text-[15px] ${!postPage && "ml-1.5"}`}>
-                            @{post?.tag}
-                        </span>
-                    </div>{' '}
-                    .{" "}
-                    <span className="hover:underline text-sm sm:text-[15px]">
-                    <Moment fromNow>{post?.timestamp?.toDate()}</Moment>
-                    </span>
-                    {!postPage && (
-                        <p className="text-[#d9d9d9] text-[15px] sm:text-base mt-0.5">
-                            {post?.text}
-                        </p>
-                        
-                    ) }
-                </div>
-                <div className="flex-shrink-0 ml-auto icon group">
-                    <DotsHorizontalIcon className="h-5 text-[#6e767d] group-hover:text-[#1d9bf0]"/>
-                </div>
+          )}
+          <div className="text-[#6e767d]">
+            <div className="inline-block group">
+              <h4
+                className={`font-bold text-[15px] sm:text-base text-[#d9d9d9] group-hover:underline ${
+                  !postPage && "inline-block"
+                }`}
+              >
+                {post?.username}
+              </h4>
+              <span
+                className={`text-sm sm:text-[15px] ${!postPage && "ml-1.5"}`}
+              >
+                @{post?.tag}
+              </span>
             </div>
-            {postPage && (
-                <p className="text-[#d9d9d9] text-[15px] sm:text-base mt-0.5">
-                    {post?.text}
-                </p>
+            ·{" "}
+            <span className="hover:underline text-sm sm:text-[15px]">
+              <Moment fromNow>{post?.timestamp?.toDate()}</Moment>
+            </span>
+            {!postPage && (
+              <p className="text-[#d9d9d9] text-[15px] sm:text-base mt-0.5 break-all">
+                {post?.text}
+              </p>
             )}
-            <img src={post?.image} alt="" className="object-cover mr-2 rounded-2xl max-h" />
-            <div className={`text-[#6e767d] flex justify-between w-10/12 ${postPage && "mx-auto"}`}>
-            <div
+          </div>
+          <div className="flex-shrink-0 ml-auto icon group">
+            <DotsHorizontalIcon className="h-5 text-[#6e767d] group-hover:text-[#1d9bf0]" />
+          </div>
+        </div>
+        {postPage && (
+          <p className="text-[#d9d9d9] mt-0.5 text-xl ">{post?.text}</p>
+        )}
+        <img
+          src={post?.image}
+          alt=""
+          className="rounded-2xl max-h-[700px] object-cover mr-2"
+        />
+        <div
+          className={`text-[#6e767d] flex justify-between w-10/12 ${
+            postPage && "mx-auto"
+          }`}
+        >
+          <div
             className="flex items-center space-x-1 group"
             onClick={(e) => {
               e.stopPropagation();
@@ -199,13 +204,13 @@ function Post({id, post, postPage}) {
           </div>
 
           <div className="icon group">
-            <ShareIcon className=" h-5 group-hover:text-[#1d9bf0]" />
+            <ShareIcon className="h-5 group-hover:text-[#1d9bf0]" />
           </div>
           <div className="icon group">
-            <ChartBarIcon className=" h-5 group-hover:text-[#1d9bf0]" />
+            <ChartBarIcon className="h-5 group-hover:text-[#1d9bf0]" />
           </div>
-            </div>
         </div>
+      </div>
     </div>
   )
 }

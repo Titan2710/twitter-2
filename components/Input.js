@@ -67,7 +67,7 @@ function Input() {
         <div className="w-full divide-y divide-gray-800">
             <div className={`${selectedFile && "pb-7"} ${input && "space-y-2.5"}`}>
                 <textarea
-                  className="bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500 tracking-wide w-full min-h-[50px]"
+                  className="bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500 overflow-scroll scrollbar-hide tracking-wide w-full min-h-[50px]"
                   rows="2"
                   placeholder="What's happening?"
                   value={input}
