@@ -12,13 +12,13 @@ import {
   import { modalState } from "../atoms/modalAtom";
   import Modal from "../components/Modal";
   import Sidebar from "../components/Sidebar";
-//   import Widgets from "../components/Widgets";
   import Post from "../components/Post";
   import { db } from "../firebase";
   import { ArrowLeftIcon } from "@heroicons/react/solid";
   import Comment from "../components/Comment";
   import Head from "next/head";
 import Login from "../components/Login";
+import Widgets from "../components/Widgets";
 
 function PostPage({ trendingResults, followResults, providers }) {
     const {data: session} = useSession();
@@ -80,7 +80,9 @@ function PostPage({ trendingResults, followResults, providers }) {
             </div>
         )}
       </div>
-
+      
+        <Widgets trendingResults={trendingResults} followResults={followResults} />
+        
       {isOpen && <Modal />} 
     </main>
   </div>
