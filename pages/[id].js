@@ -54,7 +54,7 @@ function PostPage({ trendingResults, followResults, providers }) {
     <div>
       <Head>
         <title>
-          {post?.username} on Twitter: "{post?.text}"
+          {post?.username} on Twitter: {post?.text}
         </title>
         <link rel="icon" href="/logo.svg" />
       </Head>
