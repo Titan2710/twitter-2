@@ -26,7 +26,7 @@ function Widgets({trendingResults, followResults}) {
       </button>
     </div>
 
-    <div className="text-[#d9d9d9] space-y-3 bg-[#15181c] pt-2 rounded-xl w-11/12 xl:w-9/12">
+    <div className="sticky top-16 text-[#d9d9d9] space-y-3 bg-[#15181c] pt-2 rounded-xl w-11/12 xl:w-9/12 ">
       <h4 className="px-4 text-xl font-bold">Who to follow</h4>
       {followResults.map((result, index) => (
         <div
