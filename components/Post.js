@@ -77,7 +77,10 @@ function Post({id, post, postPage}) {
       };
     
   return (
-    <div className='flex p-4 border-b border-gray-700 cursor-pointer'>
+    <div 
+      className='flex p-4 border-b border-gray-800 cursor-pointer'
+      onClick={() => router.push(`/${id}`)}
+    >
         {!postPage && (
             <img 
                 referrerPolicy="no-referrer"
